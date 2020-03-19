@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
 
 import logo from "../images/one-kinda-folk-logo.png"
@@ -15,11 +16,13 @@ const Logo = styled.div`
 
 const Header = () => (
   <header>
-    <Logo>
-      <h1>
-        <img src={logo} alt="One Kinda Folk Coffee Dublin" />
-      </h1>
-    </Logo>
+    <Link to="/">
+      <Logo>
+        <h1>
+          <img src={logo} alt="One Kinda Folk Coffee Dublin" />
+        </h1>
+      </Logo>
+    </Link>
   </header>
 )
 

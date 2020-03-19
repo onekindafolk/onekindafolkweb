@@ -37,6 +37,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  cursor: pointer;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 300;
+  font-size: 30px;
+  padding: 10px;
+  background: black;
+  color: white;
+  border: 0;
+  transition: all 300ms ease-in-out;
+  &:hover,
+  &:focus {
+    background: ${colors.secondary}
+  }
+}
+
 strong,
 em,
 b,
@@ -60,6 +76,10 @@ h2 {
 p {
   font-size: 28px;
   letter-spacing: 0.5px;
+  a {
+    text-decoration: none;
+    color: ${colors.secondary}
+  }
 }`
 
 const Layout = ({ children }) => {
