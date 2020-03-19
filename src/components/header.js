@@ -1,42 +1,26 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
+import logo from "../images/one-kinda-folk-logo.png"
+
+const Logo = styled.div`
+  text-align: center;
+  h1 {
+    margin: 20px auto 0 auto;
+  }
+  img {
+    height: 280px;
+  }
+`
+
+const Header = () => (
+  <header>
+    <Logo>
+      <h1>
+        <img src={logo} alt="One Kinda Folk Coffee Dublin" />
       </h1>
-    </div>
+    </Logo>
   </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header
