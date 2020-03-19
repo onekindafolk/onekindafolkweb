@@ -45,9 +45,9 @@ const Social = () => {
       <li>
         <a
           href="https://www.instagram.com/onekindafolkcoffee"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           target="_blank"
-          class="instagram"
+          className="instagram"
         >
           Instagram
         </a>
