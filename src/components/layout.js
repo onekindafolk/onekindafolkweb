@@ -7,7 +7,6 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 import { createGlobalStyle } from "styled-components"
 import { colors } from "../styleconfig"
@@ -76,9 +75,6 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Helmet>
-        <script src="https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js"></script>
-      </Helmet>
       <Header siteTitle={data.site.siteMetadata.title} />
       <GlobalStyle />
       <div>
