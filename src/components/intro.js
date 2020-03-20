@@ -5,6 +5,7 @@ const IntroWrapper = styled.div`
   max-width: 710px;
   margin: 20px auto 50px auto;
   padding: 0 20px;
+  text-align: center;
 
   p.large {
     font-size: 24px;

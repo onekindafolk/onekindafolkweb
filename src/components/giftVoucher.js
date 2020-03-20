@@ -42,7 +42,7 @@ export default class GiftVoucher extends Component {
             <input
               type="hidden"
               name="hosted_button_id"
-              value="PLR45YD59SAG8"
+              value="B9984MQ6YDJZE"
             />
             <Button type="submit">€10</Button>
             <img
@@ -63,7 +63,7 @@ export default class GiftVoucher extends Component {
             <input
               type="hidden"
               name="hosted_button_id"
-              value="YUJ8LFEHQ5GUJ"
+              value="MZPSWKUP3ZVM8"
             />
             <Button type="submit">€20</Button>
             <img
@@ -84,7 +84,7 @@ export default class GiftVoucher extends Component {
             <input
               type="hidden"
               name="hosted_button_id"
-              value="ZJ9V6A8U3WCR4"
+              value="D9FY7EREGRJQL"
             />
             <Button type="submit">€50</Button>
             <img

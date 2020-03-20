@@ -18,7 +18,7 @@ const Contact = () => {
     <ContactWrapper>
       <h2>Contact Us</h2>
       <p>
-        <a href="mailto:onekindafolk@outlook.com">e-mail us</a> or send us a
+        <a href="mailto:onekindafolk@gmail.com">e-mail us</a> or send us a
         message on{" "}
         <a
           href="https://www.instagram.com/onekindafolkcoffee"
