@@ -10,13 +10,13 @@ const AddressWrapper = styled.section`
   a {
     font-size: 28px;
     text-decoration: none;
-    color: ${colors.accent};
+    color: ${colors.text};
     display: block;
     transition: all 300ms ease-in-out;
 
     &:hover,
     &:focus {
-      color: ${colors.secondary};
+      color: ${colors.accent};
     }
   }
 `

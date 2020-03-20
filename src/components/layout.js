@@ -30,7 +30,7 @@ body {
   padding: 0;
   min-width: 320px;
   background: ${colors.bg};
-  color: ${colors.accent};
+  color: ${colors.text};
   font-family: 'Source Code Pro', monospace;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
@@ -49,7 +49,7 @@ button {
   transition: all 300ms ease-in-out;
   &:hover,
   &:focus {
-    background: ${colors.secondary}
+    background: ${colors.accent}
   }
 }
 
@@ -78,7 +78,7 @@ p {
   letter-spacing: 0.5px;
   a {
     text-decoration: none;
-    color: ${colors.secondary}
+    color: ${colors.accent}
   }
 }`
 

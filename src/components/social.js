@@ -34,7 +34,7 @@ const SocialLinks = styled.ul`
 
     &:hover,
     &:focus {
-      background-color: ${colors.secondary};
+      background-color: ${colors.accent};
     }
   }
 `
@@ -45,8 +45,6 @@ const Social = () => {
       <li>
         <a
           href="https://www.instagram.com/onekindafolkcoffee"
-          rel="noopener noreferrer"
-          target="_blank"
           className="instagram"
         >
           Instagram

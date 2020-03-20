@@ -6,6 +6,7 @@ import Images from "../components/images"
 import GiftVoucher from "../components/giftVoucher"
 import Address from "../components/address"
 import Hours from "../components/hours"
+import Contact from "../components/contact"
 import CandleDivider from "../components/candleDivider"
 import SEO from "../components/seo"
 
@@ -18,6 +19,7 @@ const IndexPage = () => (
     <Address />
     <CandleDivider />
     <Hours />
+    <Contact />
   </Layout>
 )
 
