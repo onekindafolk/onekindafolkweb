@@ -9,7 +9,7 @@ const ContactWrapper = styled.section`
 
   p {
     margin: 0;
-    font-size: 24px;
+    font-size: 18px;
   }
 `
 

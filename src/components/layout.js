@@ -70,7 +70,12 @@ h2 {
   letter-spacing: 3px;
   font-weight: 400;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
+  em {
+    text-transform: none;
+    display: block;
+    font-size: 14px;
+  }
 }
 
 p {

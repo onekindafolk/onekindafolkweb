@@ -16,14 +16,16 @@ const HoursWrapper = styled.section`
 const Hours = () => {
   return (
     <HoursWrapper>
-      <h2>Opening Hours</h2>
-      <p>Monday: CLOSED</p>
-      <p>Tuesday: 8am - 3pm</p>
-      <p>Wednesday: 8am - 3pm</p>
-      <p>Thursday: 8am - 3pm</p>
-      <p>Friday: 8am - 3pm</p>
+      <h2>
+        Opening Hours <em>Temporary opening hours due to COVID-19</em>
+      </h2>
+      <p>Monday: 10am - 3pm</p>
+      <p>Tuesday: 10am - 3pm</p>
+      <p>Wednesday: 10am - 3pm</p>
+      <p>Thursday: 10am - 3pm</p>
+      <p>Friday: 10am - 3pm</p>
       <p>Saturday: 10am - 3pm</p>
-      <p>Sunday: CLOSED</p>
+      <p>Sunday: 10am - 3pm</p>
     </HoursWrapper>
   )
 }
