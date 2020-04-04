@@ -78,7 +78,6 @@ const ProductList = () => (
 )
 
 const List = ({ data }) => {
-  console.log(data)
   return (
     <ProductListContainer>
       {data.shopifyCollection.products.map(product => {

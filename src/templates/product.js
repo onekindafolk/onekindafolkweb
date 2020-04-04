@@ -117,7 +117,7 @@ export default ({ data }) => {
   const product = data.shopifyProduct
   const title = product.title
   const price = product.variants[0].price
-  const description = product.descriptionHtml
+  const { description, descriptionHtml } = product
   const socialImage = product.images[0].localFile.childImageSharp.fixed.src
   const productImage = product.images[0].localFile.childImageSharp.fluid
 
@@ -139,7 +139,7 @@ export default ({ data }) => {
           <div className="price">€{price}</div>
           <Description
             dangerouslySetInnerHTML={{
-              __html: description,
+              __html: descriptionHtml,
             }}
           />
           <Button disabled={context.adding} onClick={handleAddToCart}>

@@ -10,7 +10,7 @@ import SEO from "../components/seo"
 
 const IndexPage = () => (
   <>
-    <SEO title="Home" />
+    <SEO />
     <Intro />
     <ProductList />
     <Images />
