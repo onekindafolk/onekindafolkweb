@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `One Kinda Folk`,
     description: `Pouring 3fe coffee behind the most beautiful ivy wall in Dublin`,
+    url: `https://www.onekindafolk.ie`,
   },
 
   plugins: [
@@ -26,6 +27,21 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/one-kinda-folk-logo-candle.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        // The domain name of your Shopify shop.
+        shopName: `one-kinda-folk`,
+        // The storefront access token
+        accessToken: `1f3c82872f2cd3dedce5957cc6494042`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/index.js`),
       },
     },
     {

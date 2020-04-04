@@ -1,8 +1,16 @@
 import React from "react"
 import { Link } from "gatsby"
+import Cart from "./cart.js"
 import styled from "styled-components"
 
 import logo from "../images/one-kinda-folk-logo.png"
+
+const HeaderContainer = styled.header`
+  text-align: center;
+  .logoLink {
+    display: inline-block;
+  }
+`
 
 const Logo = styled.div`
   text-align: center;
@@ -15,15 +23,16 @@ const Logo = styled.div`
 `
 
 const Header = () => (
-  <header>
-    <Link to="/">
+  <HeaderContainer>
+    <Link to="/" className="logoLink">
       <Logo>
         <h1>
           <img src={logo} alt="One Kinda Folk Coffee Dublin" />
         </h1>
       </Logo>
     </Link>
-  </header>
+    <Cart />
+  </HeaderContainer>
 )
 
 export default Header
