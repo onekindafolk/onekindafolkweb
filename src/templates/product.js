@@ -105,7 +105,7 @@ const Description = styled.div`
   }
 `
 
-export default ({ data }) => {
+export default ({ data, location }) => {
   const context = useContext(StoreContext)
   const [showAddedMessage, setShowAddedMessage] = useState(false)
 
@@ -129,6 +129,7 @@ export default ({ data }) => {
         type="product"
         price={price}
         image={socialImage}
+        location={location}
       />
       <ProductPage>
         <ImageWrapper>

@@ -8,17 +8,19 @@ import Contact from "../components/contact"
 import CandleDivider from "../components/candleDivider"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <>
-    <SEO />
-    <Intro />
-    <ProductList />
-    <Images />
-    <Address />
-    <CandleDivider />
-    <Hours />
-    <Contact />
-  </>
-)
+const IndexPage = props => {
+  return (
+    <>
+      <SEO location={props.location} />
+      <Intro />
+      <ProductList />
+      <Images />
+      <Address />
+      <CandleDivider />
+      <Hours />
+      <Contact />
+    </>
+  )
+}
 
 export default IndexPage

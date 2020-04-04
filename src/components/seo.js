@@ -1,13 +1,10 @@
-import React, { useContext } from "react"
+import React from "react"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import StoreContext from "../context/StoreContext"
 import ogImage from "../images/one-kinda-folk-og.jpeg"
 
 function SEO(props) {
-  const { description, lang, title, type, price, image } = props
-
-  const context = useContext(StoreContext)
+  const { description, lang, title, type, price, image, location } = props
 
   const { site } = useStaticQuery(
     graphql`
@@ -44,10 +41,6 @@ function SEO(props) {
       content: metaDescription,
     },
     {
-      property: `og:url`,
-      content: context.location.href,
-    },
-    {
       property: `og:type`,
       content: type || "website",
     },
@@ -69,20 +62,23 @@ function SEO(props) {
     },
   ]
 
+  if (location) {
+    metaTags.push({ name: "og:url", content: location.href })
+  }
   if (price) {
     metaTags.push({ name: "product:price:amount", content: price })
-    metaTags.push({ name: "prouct:price:currency", content: "EUR" })
+    metaTags.push({ name: "product:price:currency", content: "EUR" })
   }
 
-  if (image) {
+  if (location && image) {
     metaTags.push({
       name: "og:image",
-      content: `${context.location.origin}${image}`,
+      content: `${location.origin}${image}`,
     })
-  } else {
+  } else if (location && ogImage) {
     metaTags.push({
       name: "og:image",
-      content: `${context.location.origin}${ogImage}`,
+      content: `${location.origin}${ogImage}`,
     })
   }
 
