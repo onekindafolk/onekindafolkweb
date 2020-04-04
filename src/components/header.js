@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import Cart from "./cart.js"
 import styled from "styled-components"
 
 import logo from "../images/one-kinda-folk-logo.png"
@@ -22,6 +23,7 @@ const Header = () => (
           <img src={logo} alt="One Kinda Folk Coffee Dublin" />
         </h1>
       </Logo>
+      <Cart />
     </Link>
   </header>
 )

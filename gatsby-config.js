@@ -29,6 +29,21 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-shopify`,
+      options: {
+        // The domain name of your Shopify shop.
+        shopName: `one-kinda-folk`,
+        // The storefront access token
+        accessToken: `1f3c82872f2cd3dedce5957cc6494042`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/index.js`),
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [`source code pro\:300,400`],
