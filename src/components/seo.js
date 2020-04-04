@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import ogImage from "../images/one-kinda-folk-og.jpeg"
 
 function SEO(props) {
-  const { description, lang, title, type, price, image, location } = props
+  const { description, lang, title, type, price, image, pathname } = props
 
   const { site } = useStaticQuery(
     graphql`
@@ -13,11 +13,14 @@ function SEO(props) {
           siteMetadata {
             title
             description
+            url
           }
         }
       }
     `
   )
+
+  const siteUrl = site.siteMetadata.url
 
   const metaTitle = title
     ? `${title} | ${site.siteMetadata.title}`
@@ -62,23 +65,23 @@ function SEO(props) {
     },
   ]
 
-  if (location) {
-    metaTags.push({ name: "og:url", content: location.href })
+  if (siteUrl) {
+    metaTags.push({ name: "og:url", content: `${siteUrl}/${pathname || ""}` })
   }
   if (price) {
     metaTags.push({ name: "product:price:amount", content: price })
     metaTags.push({ name: "product:price:currency", content: "EUR" })
   }
 
-  if (location && image) {
+  if (siteUrl && image) {
     metaTags.push({
       name: "og:image",
-      content: `${location.origin}${image}`,
+      content: `${siteUrl}${image}`,
     })
-  } else if (location && ogImage) {
+  } else if (siteUrl && ogImage) {
     metaTags.push({
       name: "og:image",
-      content: `${location.origin}${ogImage}`,
+      content: `${siteUrl}${ogImage}`,
     })
   }
 

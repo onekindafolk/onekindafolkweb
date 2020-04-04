@@ -105,7 +105,7 @@ const Description = styled.div`
   }
 `
 
-export default ({ data, location }) => {
+export default ({ data }) => {
   const context = useContext(StoreContext)
   const [showAddedMessage, setShowAddedMessage] = useState(false)
 
@@ -117,7 +117,7 @@ export default ({ data, location }) => {
   const product = data.shopifyProduct
   const title = product.title
   const price = product.variants[0].price
-  const { description, descriptionHtml } = product
+  const { description, descriptionHtml, handle } = product
   const socialImage = product.images[0].localFile.childImageSharp.fixed.src
   const productImage = product.images[0].localFile.childImageSharp.fluid
 
@@ -129,7 +129,7 @@ export default ({ data, location }) => {
         type="product"
         price={price}
         image={socialImage}
-        location={location}
+        pathname={`shop/${handle}`}
       />
       <ProductPage>
         <ImageWrapper>

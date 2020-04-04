@@ -54,7 +54,7 @@ const Button = styled.button`
   ${primaryButton}
 `
 
-const CartPage = ({ location }) => {
+const CartPage = () => {
   const context = useContext(StoreContext)
   const { checkout } = context
 
@@ -64,7 +64,7 @@ const CartPage = ({ location }) => {
 
   return (
     <>
-      <SEO title="Shopping Bag" location={location} />
+      <SEO title="Shopping Bag" pathname="checkout" />
       <Cart>
         {checkout.lineItems.length <= 0 && (
           <EmptyBag>

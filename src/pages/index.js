@@ -9,10 +9,9 @@ import CandleDivider from "../components/candleDivider"
 import SEO from "../components/seo"
 
 const IndexPage = props => {
-  console.log(props)
   return (
     <>
-      <SEO location={props.location} />
+      <SEO />
       <Intro />
       <ProductList />
       <Images />

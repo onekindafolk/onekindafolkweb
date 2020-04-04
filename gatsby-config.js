@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `One Kinda Folk`,
     description: `Pouring 3fe coffee behind the most beautiful ivy wall in Dublin`,
+    url: `https://www.onekindafolk.ie`,
   },
 
   plugins: [
