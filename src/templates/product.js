@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import Img from "gatsby-image"
-import SEO from "../components/SEO"
+import SEO from "../components/seo"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
 import styled from "styled-components"
