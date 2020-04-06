@@ -16,7 +16,7 @@ import img12 from "../images/dog-friendly-cafe-one-kinda-folk-dublin.jpeg"
 import img13 from "../images/one-kinda-folk-coffee-dublin-bike-sign.jpeg"
 
 const Photos = styled.section`
-  height: 35vh;
+  height: 25vh;
   display: flex;
   width: 100%;
   overflow-x: scroll;
