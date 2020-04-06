@@ -37,11 +37,20 @@ const Total = styled.div`
     font-style: normal;
     font-weight: 700;
     margin-left: 10px;
+    width: 110px;
+    display: inline-block;
+    &.st-sale {
+      color: red;
+    }
   }
   button {
     margin-left: auto;
     width: 100%;
     margin-top: 15px;
+  }
+  > div {
+    width: 100%;
+    text-align: right;
   }
 `
 
@@ -60,6 +69,23 @@ const CartPage = () => {
 
   const handleCheckout = () => {
     window.open(checkout.webUrl)
+  }
+
+  const total = checkout?.totalPrice
+  const subtotal = checkout?.lineItemsSubtotalPrice?.amount
+  const discount = checkout?.discountApplications?.[0]
+  const discountAmount = discount?.value?.amount
+  const discountTitle = discount?.title
+
+  let freeShipping = false
+  if (checkout.lineItems.length > 0) {
+    for (let item of checkout.lineItems) {
+      if (item.title.toLowerCase().includes("gift voucher")) {
+        freeShipping = true
+      } else {
+        break
+      }
+    }
   }
 
   return (
@@ -82,8 +108,28 @@ const CartPage = () => {
             })}
             <Total>
               <div>
-                TOTAL <em>€{checkout.totalPrice}</em>
+                SUBTOTAL <em>€{parseFloat(subtotal).toFixed(2)}</em>
               </div>
+              <div>
+                ESTIMATED DELIVERY <em>{freeShipping ? "FREE" : "€5.00"}</em>
+              </div>
+              {discount && (
+                <div>
+                  {discountTitle}{" "}
+                  <em className="st-sale">
+                    -€{parseFloat(discountAmount).toFixed(2)}
+                  </em>
+                </div>
+              )}
+              <div>
+                ESTIMATED TOTAL{" "}
+                <em>
+                  {freeShipping
+                    ? `€${total}`
+                    : `€${(parseFloat(subtotal) + 5).toFixed(2)}`}
+                </em>
+              </div>
+              <p>Delivery charges calculated at checkout</p>
               <Button onClick={handleCheckout}>Checkout Now</Button>
             </Total>
           </CartSummary>

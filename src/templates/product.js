@@ -117,6 +117,7 @@ export default ({ data }) => {
   const product = data.shopifyProduct
   const title = product.title
   const price = product.variants[0].price
+  const availableForSale = product.variants[0].availableForSale
   const { description, descriptionHtml, handle } = product
   const socialImage = product.images[0].localFile.childImageSharp.fixed.src
   const productImage = product.images[0].localFile.childImageSharp.fluid
@@ -143,9 +144,12 @@ export default ({ data }) => {
               __html: descriptionHtml,
             }}
           />
-          <Button disabled={context.adding} onClick={handleAddToCart}>
-            Add to Bag
-          </Button>
+          {availableForSale && (
+            <Button disabled={context.adding} onClick={handleAddToCart}>
+              Add to Bag
+            </Button>
+          )}
+          {!availableForSale && <Button disabled>Sold Out</Button>}
           {showAddedMessage === true && (
             <ButtonLinkWrapper>
               <ActionButton>
@@ -176,6 +180,7 @@ export const query = graphql`
         title
         price
         availableForSale
+        requiresShipping
       }
       images {
         id
