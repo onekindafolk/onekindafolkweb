@@ -55,6 +55,7 @@ const ProductList = () => (
             id
             title
             handle
+            availableForSale
             images {
               localFile {
                 childImageSharp {
@@ -68,6 +69,7 @@ const ProductList = () => (
               id
               title
               price
+              requiresShipping
             }
           }
         }

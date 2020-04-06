@@ -28,6 +28,10 @@ transition: all 300ms ease-in-out;
 &:focus {
   background: ${colors.accent}
 }
+&:disabled:hover {
+  background: black;
+  cursor: not-allowed;
+}
 `
 
 export const actionButton = `
