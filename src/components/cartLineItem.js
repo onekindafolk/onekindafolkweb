@@ -1,16 +1,20 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
 import StoreContext from "../context/StoreContext"
-import { textLinkButton } from "../styleconfig"
+import { textLinkButton, mq } from "../styleconfig"
 
 const LineItem = styled.div`
   display: flex;
   align-items: center;
   margin: 0 auto;
   text-align: left;
-  font-size: 28px;
-  line-height: 32px;
+  font-size: 16px;
+  line-height: 18px;
   margin-bottom: 15px;
+  @media (${mq.desktop}) {
+    font-size: 28px;
+    line-height: 32px;
+  }
 `
 
 const ImageWrapper = styled.div`
@@ -31,6 +35,7 @@ const Quantity = styled.div`
 `
 
 const RemoveButton = styled.button`
+  margin-top: 10px;
   ${textLinkButton}
 `
 

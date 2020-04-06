@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import SEO from "../components/seo"
 import CartLineItem from "../components/cartLineItem"
 import styled from "styled-components"
-import { primaryButton } from "../styleconfig"
+import { primaryButton, mq } from "../styleconfig"
 
 import StoreContext from "../context/StoreContext"
 
@@ -32,26 +32,40 @@ const Total = styled.div`
   justify-content: center;
   flex-wrap: wrap;
 
-  font-size: 23px;
-  em {
-    font-style: normal;
-    font-weight: 700;
-    margin-left: 10px;
-    width: 110px;
-    display: inline-block;
-    &.st-sale {
-      color: red;
-    }
-  }
   button {
     margin-left: auto;
     width: 100%;
     margin-top: 15px;
   }
-  > div {
-    width: 100%;
-    text-align: right;
+`
+const TotalLineItem = styled.div`
+  width: 100%;
+  text-align: right;
+  display: flex;
+  ${props =>
+    props.promo ? "color: red; margin: 12px 0;" : "text-transform: uppercase;"};
+  ${props =>
+    props.total
+      ? "margin-top: 16px; font-weight: 400; font-size: 16px; line-height: 18px;"
+      : "font-size: 14px; line-height: 16px;"};
+  @media (${mq.desktop}) {
+    ${props =>
+      props.total
+        ? "font-size: 24px; line-height: 26px;"
+        : "font-size: 18px; line-height: 20px;"};
   }
+`
+
+const TotalLineItemLabel = styled.span`
+  display: inline-block;
+  width: 70%;
+`
+
+const TotalLineItemAmount = styled.span`
+  font-weight: 400;
+  margin-left: 10px;
+  display: inline-block;
+  width: 30%;
 `
 
 const EmptyBag = styled.div`
@@ -107,28 +121,34 @@ const CartPage = () => {
               return <CartLineItem key={item.id} line_item={item} />
             })}
             <Total>
-              <div>
-                SUBTOTAL <em>€{parseFloat(subtotal).toFixed(2)}</em>
-              </div>
-              <div>
-                ESTIMATED DELIVERY <em>{freeShipping ? "FREE" : "€5.00"}</em>
-              </div>
+              <TotalLineItem>
+                <TotalLineItemLabel>Subtotal</TotalLineItemLabel>
+                <TotalLineItemAmount>
+                  €{parseFloat(subtotal).toFixed(2)}
+                </TotalLineItemAmount>
+              </TotalLineItem>
+              <TotalLineItem>
+                <TotalLineItemLabel>Estimated Delivery</TotalLineItemLabel>
+                <TotalLineItemAmount>
+                  {freeShipping ? "FREE" : "€5.00"}
+                </TotalLineItemAmount>
+              </TotalLineItem>
               {discount && (
-                <div>
-                  {discountTitle}{" "}
-                  <em className="st-sale">
+                <TotalLineItem promo>
+                  <TotalLineItemLabel>{discountTitle}</TotalLineItemLabel>
+                  <TotalLineItemAmount>
                     -€{parseFloat(discountAmount).toFixed(2)}
-                  </em>
-                </div>
+                  </TotalLineItemAmount>
+                </TotalLineItem>
               )}
-              <div>
-                ESTIMATED TOTAL{" "}
-                <em>
+              <TotalLineItem total>
+                <TotalLineItemLabel>Estimated Total</TotalLineItemLabel>
+                <TotalLineItemAmount>
                   {freeShipping
                     ? `€${total}`
                     : `€${(parseFloat(subtotal) + 5).toFixed(2)}`}
-                </em>
-              </div>
+                </TotalLineItemAmount>
+              </TotalLineItem>
               <p>Delivery charges calculated at checkout</p>
               <Button onClick={handleCheckout}>Checkout Now</Button>
             </Total>
