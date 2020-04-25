@@ -17,7 +17,7 @@ const Hours = () => {
   return (
     <HoursWrapper>
       <h2>
-        Opening Hours <em>Closed temporarily in line with our government’s new COVID-19 restrictions</em>
+        Opening Hours <em>Temporary opening hours due to COVID-19</em>
       </h2>
       <p>Monday: Closed</p>
       <p>Tuesday: 10am - 3pm</p>
