@@ -19,11 +19,11 @@ const Hours = () => {
       <h2>
         Opening Hours <em>Temporary opening hours due to COVID-19</em>
       </h2>
-      <p>Monday: Closed</p>
-      <p>Tuesday: 9am - 4pm</p>
-      <p>Wednesday: 9am - 4pm</p>
-      <p>Thursday: 9am - 4pm</p>
-      <p>Friday: 9am - 4pm</p>
+      <p>Monday: 8:30am - 4pm</p>
+      <p>Tuesday: 8:30am - 4pm</p>
+      <p>Wednesday: 8:30am - 4pm</p>
+      <p>Thursday: 8:30am - 4pm</p>
+      <p>Friday: 8:30am - 4pm</p>
       <p>Saturday: 9am - 4pm</p>
       <p>Sunday: 9am - 4pm</p>
     </HoursWrapper>
