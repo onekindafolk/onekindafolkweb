@@ -1,4 +1,5 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 const IntroWrapper = styled.div`
@@ -18,27 +19,38 @@ const IntroWrapper = styled.div`
   }
 `
 
-const Intro = () => {
+const Intro = () => (
+  <StaticQuery
+    query={graphql`
+      query IntroQuery {
+        prismicHomepage {
+          data {
+            title {
+              text
+            }
+            subtitle {
+              text
+            }
+            intro {
+              html
+            }
+          }
+        }
+      }
+    `}
+    render={data => <IntroComponent data={data.prismicHomepage.data} />}
+  />
+)
+
+const IntroComponent = ({ data }) => {
+  const title = data.title.text
+  const subtitle = data.subtitle.text
+  const intro = data.intro.html
   return (
     <IntroWrapper>
-      <p className="large">
-        Pouring 3fe coffee behind the most beautiful ivy wall in Dublin
-      </p>
-      <p className="medium">“There’s only one kinda folk, folks”</p>
-      <p>
-        An old shed that used to house cobwebs and yoga mats is now a Byron Bay
-        inspired hidden little gem in the middle of the city. Set behind the
-        most gorgeous ivy wall you’ll find a little oasis filled with dried
-        flowers and the smells of specialty coffee and chai brewing.
-      </p>
-
-      <p>
-        We are passionate about coffee, good coffee and are proudly stocked by
-        3fe. Fresh pastries and a range of vegan, gluten free and dairy free
-        treats are delivered daily by local suppliers.
-      </p>
-
-      <p>Coffee, community, tunes and chai. Get down.</p>
+      <p className="large">{title}</p>
+      <p className="medium">{subtitle}</p>
+      <div dangerouslySetInnerHTML={{ __html: intro }} />
     </IntroWrapper>
   )
 }

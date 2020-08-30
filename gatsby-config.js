@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `One Kinda Folk`,
@@ -35,7 +39,7 @@ module.exports = {
         // The domain name of your Shopify shop.
         shopName: `one-kinda-folk`,
         // The storefront access token
-        accessToken: `1f3c82872f2cd3dedce5957cc6494042`,
+        accessToken: `${process.env.GATSBY_SHOPIFY_ACCESS}`,
       },
     },
     {
@@ -54,5 +58,20 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    {
+      resolve: "gatsby-source-prismic",
+      options: {
+        repositoryName: "onekindafolk",
+        accessToken: `${process.env.GATSBY_PRISMIC_ACCESS}`,
+        schemas: {
+          homepage: require("./src/schemas/homepage.json"),
+        },
+        shouldDownloadImage: ({ node, key, value }) => {
+          return true
+        },
+        lang: "*",
+        typePathsFilenamePrefix: "prismic-typepaths---onekindafolk",
+      },
+    },
   ],
 }

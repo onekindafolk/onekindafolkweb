@@ -1,4 +1,5 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 const ContactWrapper = styled.section`
@@ -13,20 +14,33 @@ const ContactWrapper = styled.section`
   }
 `
 
-const Contact = () => {
+const Contact = () => (
+  <StaticQuery
+    query={graphql`
+      query ContactQuery {
+        prismicHomepage {
+          data {
+            contact_title {
+              text
+            }
+            contact {
+              html
+            }
+          }
+        }
+      }
+    `}
+    render={data => <ContactComponent data={data.prismicHomepage.data} />}
+  />
+)
+
+const ContactComponent = ({ data }) => {
+  const title = data.contact_title.text
+  const contact = data.contact.html
   return (
     <ContactWrapper>
-      <h2>Contact Us</h2>
-      <p>
-        <a href="mailto:onekindafolk@gmail.com">e-mail us</a> or send us a
-        message on{" "}
-        <a
-          href="https://www.instagram.com/onekindafolkcoffee"
-          className="instagram"
-        >
-          Instagram
-        </a>
-      </p>
+      <h2>{title}</h2>
+      <div dangerouslySetInnerHTML={{ __html: contact }} />
     </ContactWrapper>
   )
 }

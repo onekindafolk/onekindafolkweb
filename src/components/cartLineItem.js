@@ -18,9 +18,12 @@ const LineItem = styled.div`
 `
 
 const ImageWrapper = styled.div`
+  flex-shrink: 0;
   width: 110px;
-  height: 150px;
   text-align: center;
+  img {
+    width: 100%;
+  }
 `
 
 const LineItemDetails = styled.div`
@@ -51,7 +54,7 @@ const CartLineItem = props => {
     <img
       src={line_item.variant.image.src}
       alt={`${line_item.title} product shot`}
-      height="150px"
+      width="110px"
     />
   ) : null
 
