@@ -98,7 +98,7 @@ function SEO(props) {
   } else if (siteUrl && seoImage) {
     metaTags.push({
       name: "og:image",
-      content: seoImage,
+      content: `${siteUrl}${seoImage}`,
     })
   }
 
