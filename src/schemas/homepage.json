@@ -1,0 +1,169 @@
+{
+  "Main": {
+    "title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Title"
+      }
+    },
+    "subtitle": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Subtitle"
+      }
+    },
+    "intro": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, strong, em, hyperlink",
+        "label": "Intro"
+      }
+    },
+    "seo_title": {
+      "type": "Text",
+      "config": {
+        "label": "SEO Title"
+      }
+    },
+    "seo_description": {
+      "type": "Text",
+      "config": {
+        "label": "SEO description"
+      }
+    },
+    "seo_preview_image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "SEO Preview Image"
+      }
+    }
+  },
+  "Photos": {
+    "gallery": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "image": {
+            "type": "Image",
+            "config": {
+              "constraint": {},
+              "thumbnails": [],
+              "label": "image"
+            }
+          }
+        },
+        "label": "Gallery"
+      }
+    }
+  },
+  "Address": {
+    "address_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Title"
+      }
+    },
+    "address": {
+      "type": "StructuredText",
+      "config": {
+        "single": "hyperlink",
+        "label": "Address"
+      }
+    }
+  },
+  "Hours": {
+    "opening_hours_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Title"
+      }
+    },
+    "opening_hours_subtitle": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading3",
+        "label": "Subtitle (optional)"
+      }
+    },
+    "monday": {
+      "type": "Text",
+      "config": {
+        "label": "Monday"
+      }
+    },
+    "tuesday": {
+      "type": "Text",
+      "config": {
+        "label": "Tuesday"
+      }
+    },
+    "wednesday": {
+      "type": "Text",
+      "config": {
+        "label": "Wednesday"
+      }
+    },
+    "thursday": {
+      "type": "Text",
+      "config": {
+        "label": "Thursday"
+      }
+    },
+    "friday": {
+      "type": "Text",
+      "config": {
+        "label": "Friday"
+      }
+    },
+    "saturday": {
+      "type": "Text",
+      "config": {
+        "label": "Saturday"
+      }
+    },
+    "sunday": {
+      "type": "Text",
+      "config": {
+        "label": "Sunday"
+      }
+    }
+  },
+  "Contact": {
+    "contact_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Title"
+      }
+    },
+    "contact": {
+      "type": "StructuredText",
+      "config": {
+        "single": "hyperlink",
+        "label": "Contact"
+      }
+    }
+  },
+  "Checkout": {
+    "delivery_info_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading2",
+        "label": "Title"
+      }
+    },
+    "delivery_info": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "strong, em, hyperlink, list-item, o-list-item",
+        "label": "Details"
+      }
+    }
+  }
+}

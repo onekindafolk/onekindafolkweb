@@ -1,4 +1,5 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 const HoursWrapper = styled.section`
@@ -13,19 +14,63 @@ const HoursWrapper = styled.section`
   }
 `
 
-const Hours = () => {
+const Hours = () => (
+  <StaticQuery
+    query={graphql`
+      query HoursQuery {
+        prismicHomepage {
+          data {
+            opening_hours_title {
+              text
+            }
+            opening_hours_subtitle {
+              text
+            }
+            monday
+            tuesday
+            wednesday
+            thursday
+            friday
+            saturday
+            sunday
+          }
+        }
+      }
+    `}
+    render={data => <HoursComponent data={data.prismicHomepage.data} />}
+  />
+)
+
+const HoursComponent = ({ data }) => {
+  const title = data.opening_hours_title.text
+  const subtitle = data.opening_hours_subtitle.text
+  const {
+    monday,
+    tuesday,
+    wednesday,
+    thursday,
+    friday,
+    saturday,
+    sunday,
+  } = data
   return (
     <HoursWrapper>
       <h2>
-        Opening Hours <em>Temporary opening hours due to COVID-19</em>
+        {title}
+        {subtitle && (
+          <>
+            {" "}
+            <em>{subtitle}</em>
+          </>
+        )}
       </h2>
-      <p>Monday: 8:30am - 4pm</p>
-      <p>Tuesday: 8:30am - 4pm</p>
-      <p>Wednesday: 8:30am - 4pm</p>
-      <p>Thursday: 8:30am - 4pm</p>
-      <p>Friday: 8:30am - 4pm</p>
-      <p>Saturday: 9am - 4pm</p>
-      <p>Sunday: 9am - 4pm</p>
+      <p>Monday: {monday}</p>
+      <p>Tuesday: {tuesday}</p>
+      <p>Wednesday: {wednesday}</p>
+      <p>Thursday: {thursday}</p>
+      <p>Friday: {friday}</p>
+      <p>Saturday: {saturday}</p>
+      <p>Sunday: {sunday}</p>
     </HoursWrapper>
   )
 }

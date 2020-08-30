@@ -1,22 +1,10 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-
-import img1 from "../images/one-kinda-folk-cafe-dublin-1.jpeg"
-import img2 from "../images/one-kinda-folk-cafe-dublin-2.jpeg"
-import img3 from "../images/vegan-cookies-at-one-kinda-folk-dublin.jpeg"
-import img4 from "../images/pouring-coffee-at-one-kinda-folk-dublin.jpeg"
-import img5 from "../images/coffee-and-a-croissant-at-one-kinda-folk-dublin.jpeg"
-import img6 from "../images/pups-at-one-kinda-folk-dublin.jpeg"
-import img7 from "../images/vegan-treats-at-one-kinda-folk-dublin.jpeg"
-import img8 from "../images/coffee-at-one-kinda-folk-dublin.jpeg"
-import img9 from "../images/coffee-and-treats-at-one-kinda-folk-dublin.jpeg"
-import img10 from "../images/hot-drink-at-one-kinda-folk-dublin.jpeg"
-import img11 from "../images/one-kinda-folk-dublin-coffee.jpeg"
-import img12 from "../images/dog-friendly-cafe-one-kinda-folk-dublin.jpeg"
-import img13 from "../images/one-kinda-folk-coffee-dublin-bike-sign.jpeg"
 
 const Photos = styled.section`
   height: 25vh;
+  max-height: 750px;
   display: flex;
   width: 100%;
   overflow-x: scroll;
@@ -32,46 +20,48 @@ const Photos = styled.section`
   }
 `
 
-const Images = () => {
+const Images = () => (
+  <StaticQuery
+    query={graphql`
+      query GalleryQuery {
+        prismicHomepage {
+          data {
+            gallery {
+              image {
+                alt
+                localFile {
+                  id
+                  childImageSharp {
+                    fixed(height: 750) {
+                      src
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `}
+    render={data => <ImagesComponent data={data.prismicHomepage.data} />}
+  />
+)
+
+const ImagesComponent = ({ data }) => {
+  const { gallery } = data
   return (
     <Photos>
-      <img src={img1} alt="One Kinda Folk Coffee, Dublin, Ireland" />
-      <img src={img2} alt="One Kinda Folk Coffee, Dublin, Ireland" />
-      <img
-        src={img3}
-        alt="Vegan cookies at One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img
-        src={img4}
-        alt="Pouring coffee at One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img
-        src={img5}
-        alt="Coffee and a croissant at One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img src={img6} alt="Pups at One Kinda Folk Coffee, Dublin, Ireland" />
-      <img
-        src={img7}
-        alt="Vegan treats at One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img src={img8} alt="Coffee at One Kinda Folk Coffee, Dublin, Ireland" />
-      <img
-        src={img9}
-        alt="Coffee and treats at One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img
-        src={img10}
-        alt="Hot drink at One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img src={img11} alt="One Kinda Folk Coffee, Dublin, Ireland" />
-      <img
-        src={img12}
-        alt="Dog friendly cafe, One Kinda Folk Coffee, Dublin, Ireland"
-      />
-      <img
-        src={img13}
-        alt="The bicycle sign at One Kinda Folk Coffee, Dublin, Ireland"
-      />
+      {gallery.map(item => {
+        const { image } = item
+        const { alt } = image
+        return (
+          <img
+            key={image.localFile.id}
+            src={image.localFile.childImageSharp.fixed.src}
+            alt={alt}
+          />
+        )
+      })}
     </Photos>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
 import SEO from "../components/seo"
+import DeliveryInfo from "../components/deliveryInfo"
 import CartLineItem from "../components/cartLineItem"
 import styled from "styled-components"
 import { primaryButton, mq } from "../styleconfig"
@@ -67,28 +68,6 @@ const TotalLineItemAmount = styled.span`
   display: inline-block;
   width: 30%;
 `
-
-const DeliveryInfo = styled.div`
-  background: #eee;
-  margin: 30px 0 20px 0;
-  padding: 10px 30px;
-  h2 {
-    font-size: 20px;
-  }
-  p {
-    font-size: 14px;
-    strong {
-      font-weight: 400;
-    }
-    a {
-      text-decoration: underline;
-      &:hover {
-        text-decoration: none;
-      }
-    }
-  }
-`
-
 const EmptyBag = styled.div`
   text-align: center;
   padding-top: 100px;
@@ -170,28 +149,7 @@ const CartPage = () => {
                     : `€${(parseFloat(subtotal) + 5).toFixed(2)}`}
                 </TotalLineItemAmount>
               </TotalLineItem>
-              <DeliveryInfo>
-                <h2>Delivery charges calculated at checkout</h2>
-                <p>Gift Vouchers are delivered electronically</p>
-                <p>
-                  Standard <strong>€5</strong> delivery to Dublin postcodes:{" "}
-                  <strong>D4, D6, D6W, D8, D12, D14, D16</strong>
-                </p>
-                <p>
-                  <strong>OR</strong>
-                </p>
-                <p>
-                  Collect from One Kinda Folk (Mon-Fri 1pm-2pm) Please{" "}
-                  <a
-                    href="mailto:onekindafolk@gmail.com?subject=Arrange+collection+day"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    contact us
-                  </a>{" "}
-                  after placing order to arrange your collection day.
-                </p>
-              </DeliveryInfo>
+              <DeliveryInfo />
               <Button onClick={handleCheckout}>Checkout Now</Button>
             </Total>
           </CartSummary>

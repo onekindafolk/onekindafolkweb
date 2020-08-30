@@ -1,12 +1,11 @@
 import React from "react"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import ogImage from "../images/one-kinda-folk-og.jpeg"
 
 function SEO(props) {
   const { description, lang, title, type, price, image, pathname } = props
 
-  const { site } = useStaticQuery(
+  const { site, prismicHomepage } = useStaticQuery(
     graphql`
       query {
         site {
@@ -16,19 +15,37 @@ function SEO(props) {
             url
           }
         }
+        prismicHomepage {
+          data {
+            seo_title
+            seo_description
+            seo_preview_image {
+              localFile {
+                childImageSharp {
+                  fixed(width: 600) {
+                    src
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     `
   )
 
+  const seoTitle = prismicHomepage.data.seo_title
+  const seoDescription = prismicHomepage.data.seo_description
+  const seoImage =
+    prismicHomepage.data.seo_preview_image.localFile.childImageSharp.fixed.src
+
+  console.log(seoTitle, seoDescription, seoImage)
+
   const siteUrl = site.siteMetadata.url
 
-  const metaTitle = title
-    ? `${title} | ${site.siteMetadata.title}`
-    : site.siteMetadata.title
-  const socialTitle = title
-    ? `${title} @ ${site.siteMetadata.title}`
-    : site.siteMetadata.title
-  const metaDescription = description || site.siteMetadata.description
+  const metaTitle = title ? `${title} | ${seoTitle}` : seoTitle
+  const socialTitle = title ? `${title} @ ${seoTitle}` : seoTitle
+  const metaDescription = description || seoDescription
 
   const metaTags = [
     {
@@ -78,10 +95,10 @@ function SEO(props) {
       name: "og:image",
       content: `${siteUrl}${image}`,
     })
-  } else if (siteUrl && ogImage) {
+  } else if (siteUrl && seoImage) {
     metaTags.push({
       name: "og:image",
-      content: `${siteUrl}${ogImage}`,
+      content: seoImage,
     })
   }
 

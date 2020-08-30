@@ -6,6 +6,7 @@
   "author": "Jade Masterson Hally",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
+    "dotenv": "^8.2.0",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
     "gatsby-plugin-google-fonts": "^1.0.1",
@@ -16,6 +17,7 @@
     "gatsby-plugin-sharp": "^2.4.13",
     "gatsby-plugin-styled-components": "^3.1.21",
     "gatsby-source-filesystem": "^2.1.56",
+    "gatsby-source-prismic": "^3.2.1",
     "gatsby-source-shopify": "^3.1.2",
     "gatsby-transformer-sharp": "^2.3.19",
     "prop-types": "^15.7.2",

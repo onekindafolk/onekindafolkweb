@@ -1,4 +1,5 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import { colors } from "../styleconfig"
 
@@ -6,6 +7,10 @@ const AddressWrapper = styled.section`
   max-width: 530px;
   margin: 40px auto;
   padding: 0 20px;
+
+  p {
+    margin: 0;
+  }
 
   a {
     font-size: 28px;
@@ -21,22 +26,33 @@ const AddressWrapper = styled.section`
   }
 `
 
-const Address = () => {
+const Address = () => (
+  <StaticQuery
+    query={graphql`
+      query AddressQuery {
+        prismicHomepage {
+          data {
+            address_title {
+              text
+            }
+            address {
+              html
+            }
+          }
+        }
+      }
+    `}
+    render={data => <AddressComponent data={data.prismicHomepage.data} />}
+  />
+)
+
+const AddressComponent = ({ data }) => {
+  const title = data.address_title.text
+  const address = data.address.html
   return (
     <AddressWrapper>
-      <h2>Find Us</h2>
-      <a
-        href="https://g.page/one-kinda-folk?share"
-        title="click to open in Google Maps"
-      >
-        28a Dartmouth Road
-        <br />
-        Ranelagh
-        <br />
-        Dublin
-        <br />
-        Ireland
-      </a>
+      <h2>{title}</h2>
+      <div dangerouslySetInnerHTML={{ __html: address }} />
     </AddressWrapper>
   )
 }
