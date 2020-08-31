@@ -53,7 +53,7 @@ const ActionButton = styled.div`
 `
 
 const ButtonLink = styled.div`
-  margin-top: 20px;
+  margin: 20px 0;
   a {
     ${textLinkButton}
   }
