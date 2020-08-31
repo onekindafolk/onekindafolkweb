@@ -47,7 +47,7 @@ const TotalLineItem = styled.div`
     props.promo ? "color: red; margin: 12px 0;" : "text-transform: uppercase;"};
   ${props =>
     props.total
-      ? "margin-top: 16px; font-weight: 400; font-size: 16px; line-height: 18px;"
+      ? "margin-top: 16px; font-weight: 400; font-size: 22px; line-height: 24px;"
       : "font-size: 14px; line-height: 16px;"};
   @media (${mq.desktop}) {
     ${props =>

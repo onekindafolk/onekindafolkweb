@@ -5,14 +5,11 @@ import styled from "styled-components"
 const IntroWrapper = styled.div`
   max-width: 710px;
   margin: 20px auto 50px auto;
-  padding: 0 20px;
-  text-align: center;
-
-  p.large {
-    font-size: 24px;
-  }
+  padding: 0 50px;
+  text-align: left;
   p.medium {
     font-size: 18px;
+    font-weight: 400;
   }
   p {
     font-size: 14px;
@@ -25,9 +22,6 @@ const Intro = () => (
       query IntroQuery {
         prismicHomepage {
           data {
-            title {
-              text
-            }
             subtitle {
               text
             }
@@ -43,12 +37,10 @@ const Intro = () => (
 )
 
 const IntroComponent = ({ data }) => {
-  const title = data.title.text
   const subtitle = data.subtitle.text
   const intro = data.intro.html
   return (
     <IntroWrapper>
-      <p className="large">{title}</p>
       <p className="medium">{subtitle}</p>
       <div dangerouslySetInnerHTML={{ __html: intro }} />
     </IntroWrapper>

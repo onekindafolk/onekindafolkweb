@@ -29,7 +29,8 @@ const ProductPage = styled.section`
 
 const ImageWrapper = styled.div`
   @media (${mq.mobileOnly}) {
-    padding: 0 20px;
+    padding: 0 8%;
+    margin: 20px 0;
   }
 `
 
@@ -52,6 +53,7 @@ const ActionButton = styled.div`
 `
 
 const ButtonLink = styled.div`
+  margin-top: 20px;
   a {
     ${textLinkButton}
   }
@@ -59,39 +61,36 @@ const ButtonLink = styled.div`
 
 const ButtonLinkWrapper = styled.div`
   animation: fadein 1250ms;
-  > div {
-    margin-top: 20px;
-  }
 `
 
 const ProductDetails = styled.div`
   max-width: 380px;
-  width: 90%;
   margin: 0 auto;
+  padding: 0 8%;
   display: flex;
   flex-direction: column;
   @media (${mq.desktop}) {
     margin-top: 20px;
+    padding: 0;
   }
   h1 {
     text-align: left;
     padding-top: 0;
     margin: 0 0 5px 0;
     font-weight: 300;
-    font-size: 34px;
-    line-height: 38px;
+    font-size: 20px;
+    line-height: 22px;
   }
   .price {
-    font-size: 24px;
-    text-align: center;
+    font-size: 16px;
     margin-bottom: 5px;
+    font-weight: 400;
     @media (${mq.desktop}) {
-      text-align: left;
       margin-top: 10px;
     }
   }
   button {
-    margin-top: 20px;
+    margin: 20px 0;
     width: 100%;
     @media (${mq.desktop}) {
       width: ${buttonWidth};
@@ -139,11 +138,7 @@ export default ({ data }) => {
         <ProductDetails>
           <h1>{title}</h1>
           <div className="price">€{price}</div>
-          <Description
-            dangerouslySetInnerHTML={{
-              __html: descriptionHtml,
-            }}
-          />
+
           {availableForSale && (
             <Button disabled={context.adding} onClick={handleAddToCart}>
               Add to Bag
@@ -160,6 +155,11 @@ export default ({ data }) => {
               </ButtonLink>
             </ButtonLinkWrapper>
           )}
+          <Description
+            dangerouslySetInnerHTML={{
+              __html: descriptionHtml,
+            }}
+          />
         </ProductDetails>
       </ProductPage>
     </>

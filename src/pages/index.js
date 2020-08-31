@@ -1,4 +1,5 @@
 import React from "react"
+import Subheading from "../components/subheading"
 import Intro from "../components/intro"
 import Images from "../components/images"
 import ProductList from "../components/productList"
@@ -12,9 +13,10 @@ const IndexPage = props => {
   return (
     <>
       <SEO />
+      <Subheading />
+      <Images />
       <Intro />
       <ProductList />
-      <Images />
       <Address />
       <CandleDivider />
       <Hours />

@@ -56,6 +56,7 @@ transition: all 300ms ease-in-out;
 
 export const textLinkButton = `
 font-family: 'Source Code Pro', monospace;
+text-decoration: underline;
 font-weight: 300;
 letter-spacing: 0.2px;
 font-size: 14px;
@@ -64,6 +65,6 @@ transition: all 300ms ease-in-out;
 &:hover,
 &:focus {
   color: ${colors.accent};
-  text-decoration: underline;
+  text-decoration: none;
 }
 `

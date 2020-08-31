@@ -1,6 +1,7 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
+import { mq } from "../styleconfig"
 
 const ContactWrapper = styled.section`
   max-width: 530px;
@@ -11,6 +12,9 @@ const ContactWrapper = styled.section`
   p {
     margin: 0;
     font-size: 18px;
+    @media (${mq.desktop}) {
+      font-size: 24px;
+    }
   }
 `
 

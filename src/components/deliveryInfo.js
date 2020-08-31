@@ -48,7 +48,7 @@ const DeliveryInfoComponent = ({ data }) => {
   const info = data.delivery_info.html
   return (
     <Info>
-      <h2>{title}</h2>
+      <h2 className="condensed">{title}</h2>
       <div dangerouslySetInnerHTML={{ __html: info }} />
     </Info>
   )

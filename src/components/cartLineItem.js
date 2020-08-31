@@ -34,7 +34,10 @@ const Title = styled.div``
 
 const Quantity = styled.div`
   font-weight: 300;
-  font-size: 18px;
+  font-size: 14px;
+  @media (${mq.desktop}) {
+    font-size: 18px;
+  }
 `
 
 const RemoveButton = styled.button`

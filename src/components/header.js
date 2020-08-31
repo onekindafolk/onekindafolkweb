@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Cart from "./cart.js"
 import styled from "styled-components"
+import { mq } from "../styleconfig"
 
 import logo from "../images/one-kinda-folk-logo.png"
 
@@ -18,7 +19,10 @@ const Logo = styled.div`
     margin: 20px auto 0 auto;
   }
   img {
-    height: 280px;
+    height: 200px;
+    @media (${mq.desktop}) {
+      height: 280px;
+    }
   }
 `
 

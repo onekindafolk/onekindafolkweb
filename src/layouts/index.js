@@ -56,6 +56,9 @@ h2 {
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 16px;
+  &.condensed {
+    letter-spacing: 1px;
+  }
   em {
     text-transform: none;
     display: block;

@@ -3,7 +3,8 @@ import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 const Photos = styled.section`
-  height: 25vh;
+  margin: 40px 0;
+  height: 32vh;
   max-height: 750px;
   display: flex;
   width: 100%;
