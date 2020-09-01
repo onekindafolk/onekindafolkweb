@@ -185,6 +185,7 @@ class TemplateWrapper extends React.Component {
 
   componentDidMount() {
     this.initializeCheckout()
+    console.log("🇮🇪 built by JMH")
   }
 
   render() {

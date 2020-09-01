@@ -102,7 +102,6 @@ const ProductList = () => (
 )
 
 const List = ({ data }) => {
-  console.log("🇮🇪👩🏼‍💻built by JMH")
   return (
     <ProductListContainer>
       {data.shopifyCollection.products.map(product => {
