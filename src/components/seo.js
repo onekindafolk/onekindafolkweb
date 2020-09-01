@@ -39,8 +39,6 @@ function SEO(props) {
   const seoImage =
     prismicHomepage.data.seo_preview_image.localFile.childImageSharp.fixed.src
 
-  console.log(seoTitle, seoDescription, seoImage)
-
   const siteUrl = site.siteMetadata.url
 
   const metaTitle = title ? `${title} | ${seoTitle}` : seoTitle
