@@ -2,7 +2,7 @@ import React from "react"
 import Client from "shopify-buy"
 
 const client = Client.buildClient({
-  storefrontAccessToken: `1f3c82872f2cd3dedce5957cc6494042`,
+  storefrontAccessToken: `${process.env.GATSBY_SHOPIFY_ACCESS}`,
   domain: `one-kinda-folk.myshopify.com`,
 })
 

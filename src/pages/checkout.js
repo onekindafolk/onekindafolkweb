@@ -37,6 +37,9 @@ const Total = styled.div`
     margin-left: auto;
     width: 100%;
     margin-top: 15px;
+    @media (${mq.desktop}) {
+      max-width: 300px;
+    }
   }
 `
 const TotalLineItem = styled.div`
@@ -149,8 +152,8 @@ const CartPage = () => {
                     : `€${(parseFloat(subtotal) + 5).toFixed(2)}`}
                 </TotalLineItemAmount>
               </TotalLineItem>
-              <DeliveryInfo />
               <Button onClick={handleCheckout}>Checkout Now</Button>
+              <DeliveryInfo />
             </Total>
           </CartSummary>
         )}
