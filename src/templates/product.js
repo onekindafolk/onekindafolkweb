@@ -101,7 +101,7 @@ const Description = styled.div`
   }
 `
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
   const context = useContext(StoreContext)
   const [showAddedMessage, setShowAddedMessage] = useState(false)
 
@@ -117,6 +117,9 @@ export default ({ data }) => {
   const { description, descriptionHtml, handle } = product
   const socialImage = product.images[0].localFile.childImageSharp.fixed.src
   const productImage = product.images[0].localFile.childImageSharp.fluid
+  const { quantityAvailable } = pageContext
+
+  console.log("quantity available", quantityAvailable)
 
   return (
     <>

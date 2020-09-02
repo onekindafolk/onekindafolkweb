@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Jade Masterson Hally",
   "dependencies": {
+    "atob": "^2.1.2",
     "babel-plugin-styled-components": "^1.10.7",
     "dotenv": "^8.2.0",
     "framer-motion": "^2.6.5",
