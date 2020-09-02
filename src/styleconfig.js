@@ -11,6 +11,7 @@ export const mq = {
 }
 
 export const primaryButton = `
+display: inline-block;
 cursor: pointer;
 font-family: 'Source Code Pro', monospace;
 text-transform: uppercase;
@@ -55,6 +56,8 @@ transition: all 300ms ease-in-out;
 `
 
 export const textLinkButton = `
+cursor: pointer;
+display: inline-block;
 font-family: 'Source Code Pro', monospace;
 text-decoration: none;
 font-weight: 300;

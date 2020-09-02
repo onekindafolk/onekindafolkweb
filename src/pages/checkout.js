@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { Link } from "gatsby"
+import { motion, AnimatePresence } from "framer-motion"
 import SEO from "../components/seo"
 import DeliveryInfo from "../components/deliveryInfo"
 import CartLineItem from "../components/cartLineItem"
@@ -14,6 +15,7 @@ const Cart = styled.div`
 `
 
 const ShopCTA = styled.div`
+  margin-top: 25px;
   a {
     ${primaryButton}
   }
@@ -73,7 +75,15 @@ const TotalLineItemAmount = styled.span`
 `
 const EmptyBag = styled.div`
   text-align: center;
-  padding-top: 100px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8%;
 `
 
 const Button = styled.button`
@@ -87,6 +97,8 @@ const CartPage = () => {
   const handleCheckout = () => {
     window.open(checkout.webUrl)
   }
+
+  const emptyCart = checkout.lineItems.length <= 0
 
   const total = checkout?.totalPrice
   const subtotal = checkout?.lineItemsSubtotalPrice?.amount
@@ -108,56 +120,94 @@ const CartPage = () => {
   return (
     <>
       <SEO title="Shopping Bag" pathname="checkout" />
-      <Cart>
-        {checkout.lineItems.length <= 0 && (
-          <EmptyBag>
-            <h1>Your shopping bag is empty</h1>
-            <ShopCTA>
-              <Link to="/">Go Shopping!</Link>
-            </ShopCTA>
-          </EmptyBag>
-        )}
+      {checkout.id && (
+        <Cart>
+          <AnimatePresence exitBeforeEnter>
+            {emptyCart && (
+              <motion.div
+                key="emptyCart"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                }}
+                transition={{ delay: 0.7 }}
+              >
+                <EmptyBag>
+                  <h1>Your shopping bag is empty</h1>
+                  <ShopCTA>
+                    <Link to="/">Go Shopping!</Link>
+                  </ShopCTA>
+                </EmptyBag>
+              </motion.div>
+            )}
 
-        {checkout.lineItems.length > 0 && (
-          <CartSummary>
-            {checkout.lineItems.map(item => {
-              return <CartLineItem key={item.id} line_item={item} />
-            })}
-            <Total>
-              <TotalLineItem>
-                <TotalLineItemLabel>Subtotal</TotalLineItemLabel>
-                <TotalLineItemAmount>
-                  €{parseFloat(subtotal).toFixed(2)}
-                </TotalLineItemAmount>
-              </TotalLineItem>
-              <TotalLineItem>
-                <TotalLineItemLabel>Estimated Delivery</TotalLineItemLabel>
-                <TotalLineItemAmount>
-                  {freeShipping ? "FREE" : "€5.00"}
-                </TotalLineItemAmount>
-              </TotalLineItem>
-              {discount && (
-                <TotalLineItem promo>
-                  <TotalLineItemLabel>{discountTitle}</TotalLineItemLabel>
-                  <TotalLineItemAmount>
-                    -€{parseFloat(discountAmount).toFixed(2)}
-                  </TotalLineItemAmount>
-                </TotalLineItem>
-              )}
-              <TotalLineItem total>
-                <TotalLineItemLabel>Estimated Total</TotalLineItemLabel>
-                <TotalLineItemAmount>
-                  {freeShipping
-                    ? `€${total}`
-                    : `€${(parseFloat(subtotal) + 5).toFixed(2)}`}
-                </TotalLineItemAmount>
-              </TotalLineItem>
-              <Button onClick={handleCheckout}>Checkout Now</Button>
-              <DeliveryInfo />
-            </Total>
-          </CartSummary>
-        )}
-      </Cart>
+            {!emptyCart && (
+              <motion.div
+                key="cartSummary"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <CartSummary>
+                  <AnimatePresence>
+                    {checkout.lineItems.map(item => {
+                      return (
+                        <motion.div
+                          key={item.id}
+                          initial={{
+                            opacity: 1,
+                            height: "auto",
+                            overflow: "hidden",
+                          }}
+                          exit={{ opacity: 0, height: 0 }}
+                        >
+                          <CartLineItem line_item={item} />
+                        </motion.div>
+                      )
+                    })}
+                  </AnimatePresence>
+                  <Total>
+                    <TotalLineItem>
+                      <TotalLineItemLabel>Subtotal</TotalLineItemLabel>
+                      <TotalLineItemAmount>
+                        €{parseFloat(subtotal).toFixed(2)}
+                      </TotalLineItemAmount>
+                    </TotalLineItem>
+                    <TotalLineItem>
+                      <TotalLineItemLabel>
+                        Estimated Delivery
+                      </TotalLineItemLabel>
+                      <TotalLineItemAmount>
+                        {freeShipping ? "FREE" : "€5.00"}
+                      </TotalLineItemAmount>
+                    </TotalLineItem>
+                    {discount && (
+                      <TotalLineItem promo>
+                        <TotalLineItemLabel>{discountTitle}</TotalLineItemLabel>
+                        <TotalLineItemAmount>
+                          -€{parseFloat(discountAmount).toFixed(2)}
+                        </TotalLineItemAmount>
+                      </TotalLineItem>
+                    )}
+                    <TotalLineItem total>
+                      <TotalLineItemLabel>Estimated Total</TotalLineItemLabel>
+                      <TotalLineItemAmount>
+                        {freeShipping
+                          ? `€${total}`
+                          : `€${(parseFloat(subtotal) + 5).toFixed(2)}`}
+                      </TotalLineItemAmount>
+                    </TotalLineItem>
+                    <Button onClick={handleCheckout}>Checkout Now</Button>
+                    <DeliveryInfo />
+                  </Total>
+                </CartSummary>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Cart>
+      )}
     </>
   )
 }
