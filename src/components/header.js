@@ -19,7 +19,7 @@ const Logo = styled.div`
     margin: 20px auto 0 auto;
   }
   img {
-    transition: height 450ms ease-in-out;
+    transition: height 350ms ease-in-out;
     .page-homepage & {
       height: 200px;
       @media (${mq.desktop}) {
@@ -28,6 +28,9 @@ const Logo = styled.div`
     }
     .page-pdp & {
       transition: none;
+    }
+    .page-checkout & {
+      transition-duration: 200ms;
     }
     height: 140px;
   }
