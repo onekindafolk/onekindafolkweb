@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+import { Link } from "gatsby"
 import styled from "styled-components"
 import StoreContext from "../context/StoreContext"
 import { textLinkButton, mq } from "../styleconfig"
@@ -63,7 +64,11 @@ const CartLineItem = props => {
 
   return (
     <LineItem>
-      <ImageWrapper>{variantImage}</ImageWrapper>
+      <ImageWrapper>
+        <Link to={`/shop/${line_item.variant.product.handle}`}>
+          {variantImage}
+        </Link>
+      </ImageWrapper>
       <LineItemDetails>
         <Title>{line_item.title}</Title>
         <Quantity>
