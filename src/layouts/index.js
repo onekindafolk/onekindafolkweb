@@ -189,7 +189,8 @@ class TemplateWrapper extends React.Component {
   }
 
   render() {
-    const { children, location } = this.props
+    const { children, location, pageContext } = this.props
+    const pageClass = `page-${pageContext.layout}`
 
     return (
       <StoreContext.Provider value={this.state.store}>
@@ -204,7 +205,7 @@ class TemplateWrapper extends React.Component {
             }
           `}
           render={data => (
-            <div>
+            <div className={pageClass}>
               <Header />
               <GlobalStyle />
               <div>

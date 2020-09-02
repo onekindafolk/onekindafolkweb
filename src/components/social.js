@@ -8,6 +8,9 @@ const iconHeight = 30
 const iconWidth = iconHeight
 
 const SocialLinks = styled.ul`
+  .page-checkout & {
+    display: none;
+  }
   list-style: none;
   display: flex;
   justify-content: center;

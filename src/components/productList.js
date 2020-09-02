@@ -103,7 +103,7 @@ const ProductList = () => (
 
 const List = ({ data }) => {
   return (
-    <ProductListContainer>
+    <ProductListContainer id="shop">
       {data.shopifyCollection.products.map(product => {
         return (
           <ProductCard key={product.id}>

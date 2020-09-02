@@ -19,10 +19,17 @@ const Logo = styled.div`
     margin: 20px auto 0 auto;
   }
   img {
-    height: 200px;
-    @media (${mq.desktop}) {
-      height: 280px;
+    transition: height 450ms ease-in-out;
+    .page-homepage & {
+      height: 200px;
+      @media (${mq.desktop}) {
+        height: 280px;
+      }
     }
+    .page-pdp & {
+      transition: none;
+    }
+    height: 140px;
   }
 `
 

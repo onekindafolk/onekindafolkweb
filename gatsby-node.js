@@ -1,5 +1,15 @@
 const path = require("path")
 
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions
+  if (page.path === "/") {
+    page.context.layout = "homepage"
+  } else if (page.path === "/checkout/") {
+    page.context.layout = "checkout"
+  }
+  createPage(page)
+}
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -23,6 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: edge.node.id,
         handle: edge.node.handle,
+        layout: "pdp",
       },
     })
   })

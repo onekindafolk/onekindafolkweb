@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react"
+import { navigate } from "@reach/router"
 import Img from "gatsby-image"
+import { motion } from "framer-motion"
 import SEO from "../components/seo"
 import { Link } from "gatsby"
 import { graphql } from "gatsby"
@@ -52,15 +54,10 @@ const ActionButton = styled.div`
   }
 `
 
-const ButtonLink = styled.div`
+const ButtonLink = styled.button`
   margin: 20px 0;
-  a {
-    ${textLinkButton}
-  }
-`
-
-const ButtonLinkWrapper = styled.div`
-  animation: fadein 1250ms;
+  ${textLinkButton}
+  width: auto !important;
 `
 
 const ProductDetails = styled.div`
@@ -146,14 +143,22 @@ export default ({ data }) => {
           )}
           {!availableForSale && <Button disabled>Sold Out</Button>}
           {showAddedMessage === true && (
-            <ButtonLinkWrapper>
+            <motion.div
+              initial={{ height: 0, overflow: "hidden" }}
+              animate={{ height: "auto" }}
+              transition={{ duration: 0.45 }}
+            >
               <ActionButton>
                 <Link to="/checkout">Checkout Now →</Link>
               </ActionButton>
-              <ButtonLink>
-                <Link to="/">← Back to Shop</Link>
+              <ButtonLink
+                onClick={() => {
+                  navigate("/#shop")
+                }}
+              >
+                ← Back to Shop
               </ButtonLink>
-            </ButtonLinkWrapper>
+            </motion.div>
           )}
           <Description
             dangerouslySetInnerHTML={{
