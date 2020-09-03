@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { navigate } from "@reach/router"
 import Img from "gatsby-image"
 import { motion } from "framer-motion"
@@ -7,7 +7,13 @@ import { Link } from "gatsby"
 import { graphql } from "gatsby"
 import styled from "styled-components"
 import StoreContext from "../context/StoreContext"
-import { primaryButton, actionButton, textLinkButton, mq } from "../styleconfig"
+import {
+  primaryButton,
+  actionButton,
+  textLinkButton,
+  colors,
+  mq,
+} from "../styleconfig"
 
 const buttonWidth = "240px"
 
@@ -52,6 +58,24 @@ const ActionButton = styled.div`
       width: 100%;
     }
   }
+`
+
+const QuantityInBag = styled.span`
+  display: inline-block;
+  margin-bottom: 20px;
+  a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    &:hover {
+      color: ${colors.accent};
+      border-color: ${colors.accent};
+    }
+  }
+`
+const LastOne = styled.span`
+  color: red;
+  text-transform: uppercase;
 `
 
 const ButtonLink = styled.button`
@@ -101,22 +125,29 @@ const Description = styled.div`
   }
 `
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
   const context = useContext(StoreContext)
-  const [showAddedMessage, setShowAddedMessage] = useState(false)
-
-  const handleAddToCart = () => {
-    context.addVariantToCart(data.shopifyProduct.variants[0].shopifyId, 1)
-    setShowAddedMessage(true)
-  }
-
+  const { lineItems } = context.checkout
   const product = data.shopifyProduct
+  const id = data.shopifyProduct.variants[0].shopifyId
   const title = product.title
   const price = product.variants[0].price
-  const availableForSale = product.variants[0].availableForSale
   const { description, descriptionHtml, handle } = product
   const socialImage = product.images[0].localFile.childImageSharp.fixed.src
   const productImage = product.images[0].localFile.childImageSharp.fluid
+  const { quantityAvailable } = pageContext
+  let quantityInBag = 0
+  lineItems.forEach(lineItem => {
+    if (id === lineItem.variant.id) {
+      quantityInBag = lineItem.quantity
+    }
+  })
+  const availableForSale =
+    product.variants[0].availableForSale && quantityInBag < quantityAvailable
+
+  const handleAddToCart = () => {
+    context.addVariantToCart(id, 1)
+  }
 
   return (
     <>
@@ -136,18 +167,24 @@ export default ({ data }) => {
           <h1>{title}</h1>
           <div className="price">€{price}</div>
 
+          {quantityAvailable <= 1 && <LastOne>Last One</LastOne>}
+
           {availableForSale && (
             <Button disabled={context.adding} onClick={handleAddToCart}>
-              Add to Bag
+              {context.adding ? "Adding..." : "Add to Bag"}
             </Button>
           )}
           {!availableForSale && <Button disabled>Sold Out</Button>}
-          {showAddedMessage === true && (
+
+          {quantityInBag > 0 && (
             <motion.div
               initial={{ height: 0, overflow: "hidden" }}
               animate={{ height: "auto" }}
               transition={{ duration: 0.45 }}
             >
+              <QuantityInBag>
+                You have {quantityInBag} in your <Link to="/checkout">bag</Link>
+              </QuantityInBag>
               <ActionButton>
                 <Link to="/checkout">Checkout Now →</Link>
               </ActionButton>

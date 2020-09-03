@@ -11,9 +11,11 @@ const ContactWrapper = styled.section`
 
   p {
     margin: 0;
-    font-size: 18px;
+    font-size: 16px;
+    padding: 0 40px;
     @media (${mq.desktop}) {
-      font-size: 24px;
+      font-size: 18px;
+      padding: 0;
     }
   }
 `

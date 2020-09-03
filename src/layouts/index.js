@@ -2,6 +2,7 @@ import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import Header from "../components/header"
 import Social from "../components/social"
+import Credit from "../components/credit"
 import Transition from "../components/transition"
 import StoreContext, { defaultStoreContext } from "../context/StoreContext"
 import { createGlobalStyle } from "styled-components"
@@ -212,6 +213,7 @@ class TemplateWrapper extends React.Component {
                 <Transition location={location}>{children}</Transition>
                 <footer>
                   <Social />
+                  <Credit />
                 </footer>
               </div>
             </div>

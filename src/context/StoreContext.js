@@ -3,7 +3,7 @@ import Client from "shopify-buy"
 
 const client = Client.buildClient({
   storefrontAccessToken: `${process.env.GATSBY_SHOPIFY_ACCESS}`,
-  domain: `one-kinda-folk.myshopify.com`,
+  domain: `${process.env.GATSBY_SHOPIFY_STORE}.myshopify.com`,
 })
 
 export const defaultStoreContext = {

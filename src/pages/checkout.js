@@ -22,10 +22,8 @@ const ShopCTA = styled.div`
 `
 
 const CartSummary = styled.div`
-  text-align: center;
   background: white;
   width: 100%;
-
   padding: 60px 20px;
 `
 
@@ -130,7 +128,7 @@ const CartPage = () => {
                 animate={{
                   opacity: 1,
                 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: 0.2 }}
               >
                 <EmptyBag>
                   <h1>Your shopping bag is empty</h1>
@@ -144,11 +142,12 @@ const CartPage = () => {
             {!emptyCart && (
               <motion.div
                 key="cartSummary"
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0, height: 0 }}
                 animate={{
                   opacity: 1,
+                  height: "auto",
                 }}
-                exit={{ opacity: 0 }}
+                exit={{ opacity: 0, height: "auto" }}
               >
                 <CartSummary>
                   <AnimatePresence>

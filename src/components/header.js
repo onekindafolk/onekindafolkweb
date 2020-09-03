@@ -8,6 +8,8 @@ import logo from "../images/one-kinda-folk-logo.png"
 
 const HeaderContainer = styled.header`
   text-align: center;
+  position: relative;
+  z-index: 2; /* higher than empty bag element */
   .logoLink {
     display: inline-block;
   }

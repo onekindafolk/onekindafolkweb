@@ -4,18 +4,21 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { mq } from "../styleconfig"
 
-const gridWidth = 1000
+const gridWidth = 1280
 const gridPadding = 20
 const gridGutter = 20
 
-const ProductListContainer = styled.section`
+const ProductListWrapper = styled.section`
+  padding: 0 ${gridPadding}px;
+  margin: 50px auto;
+  max-width: ${gridWidth}px;
+`
+
+const ProductListContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto auto;
   grid-gap: ${gridGutter}px;
-  padding: 0 ${gridPadding}px;
-  margin: 50px auto;
-  max-width: ${gridWidth}px;
   @media (${mq.desktop}) {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -103,26 +106,29 @@ const ProductList = () => (
 
 const List = ({ data }) => {
   return (
-    <ProductListContainer id="shop">
-      {data.shopifyCollection.products.map(product => {
-        return (
-          <ProductCard key={product.id}>
-            <Link to={`/shop/${product.handle}`}>
-              <ImageWrapper>
-                <img
-                  src={product.images[0].localFile.childImageSharp.fluid.src}
-                  alt={product.title}
-                />
-              </ImageWrapper>
-              <div>
-                <p className="product-name">{product.title}</p>
-                <p className="product-price">€{product.variants[0].price}</p>
-              </div>
-            </Link>
-          </ProductCard>
-        )
-      })}
-    </ProductListContainer>
+    <ProductListWrapper id="shop">
+      <h2>Shop with Us</h2>
+      <ProductListContainer>
+        {data.shopifyCollection.products.map(product => {
+          return (
+            <ProductCard key={product.id}>
+              <Link to={`/shop/${product.handle}`}>
+                <ImageWrapper>
+                  <img
+                    src={product.images[0].localFile.childImageSharp.fluid.src}
+                    alt={product.title}
+                  />
+                </ImageWrapper>
+                <div>
+                  <p className="product-name">{product.title}</p>
+                  <p className="product-price">€{product.variants[0].price}</p>
+                </div>
+              </Link>
+            </ProductCard>
+          )
+        })}
+      </ProductListContainer>
+    </ProductListWrapper>
   )
 }
 

@@ -37,7 +37,7 @@ module.exports = {
       resolve: `gatsby-source-shopify`,
       options: {
         // The domain name of your Shopify shop.
-        shopName: `one-kinda-folk`,
+        shopName: process.env.GATSBY_SHOPIFY_STORE,
         // The storefront access token
         accessToken: `${process.env.GATSBY_SHOPIFY_ACCESS}`,
       },
