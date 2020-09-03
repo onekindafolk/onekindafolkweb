@@ -167,11 +167,11 @@ export default ({ data, pageContext }) => {
           <h1>{title}</h1>
           <div className="price">€{price}</div>
 
-          {quantityAvailable <= 1 && <LastOne>LAST ONE</LastOne>}
+          {quantityAvailable <= 1 && <LastOne>Last One</LastOne>}
 
           {availableForSale && (
             <Button disabled={context.adding} onClick={handleAddToCart}>
-              Add to Bag
+              {context.adding ? "Adding..." : "Add to Bag"}
             </Button>
           )}
           {!availableForSale && <Button disabled>Sold Out</Button>}
