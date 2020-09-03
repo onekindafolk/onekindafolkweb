@@ -35,7 +35,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  pages.data.allShopifyProduct.edges.forEach(async edge => {
+  const promise = pages.data.allShopifyProduct.edges.map(async edge => {
     const { id, shopifyId, handle } = edge.node
     const variantId = edge.node.variants[0].shopifyId
     const adminApiProductId = atob(shopifyId).replace(
@@ -47,7 +47,7 @@ exports.createPages = async ({ graphql, actions }) => {
       ""
     )
     const inventoryIdReq = await fetch(
-      `https://one-kinda-folk.myshopify.com/admin/api/2020-07/products/${adminApiProductId}/variants/${adminApiProductVariantId}.json`,
+      `https://${process.env.GATSBY_SHOPIFY_STORE}.myshopify.com/admin/api/2020-07/products/${adminApiProductId}/variants/${adminApiProductVariantId}.json`,
       {
         method: "get",
         headers: new Headers({
@@ -58,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const inventoryIdReqData = await inventoryIdReq.json()
     const { inventory_item_id } = inventoryIdReqData.variant
     const inventoryLevelsReq = await fetch(
-      `https://one-kinda-folk.myshopify.com/admin/api/2020-07/inventory_levels.json?inventory_item_ids=${inventory_item_id}`,
+      `https://${process.env.GATSBY_SHOPIFY_STORE}.myshopify.com/admin/api/2020-07/inventory_levels.json?inventory_item_ids=${inventory_item_id}`,
       {
         method: "get",
         headers: new Headers({
@@ -69,8 +69,10 @@ exports.createPages = async ({ graphql, actions }) => {
     const inventoryLevelsReqData = await inventoryLevelsReq.json()
     const { available } = inventoryLevelsReqData.inventory_levels[0]
 
-    console.log("available", available)
-
+    // check inventory levels at build time
+    // when a product inventory level changes in Shopify it triggers a rebuild via webhook
+    // final inventory check happens on Shopify checkout page
+    // if user has more than available in their bag at that point they are asked to adjust qty
     createPage({
       path: `/shop/${handle}`,
       component: path.resolve("./src/templates/product.js"),
@@ -82,4 +84,6 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
+  await Promise.all(promise)
 }

@@ -20,6 +20,7 @@ const IndexPage = props => {
       <Address />
       <CandleDivider />
       <Hours />
+      <CandleDivider />
       <Contact />
     </>
   )

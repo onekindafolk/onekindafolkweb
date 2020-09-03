@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext } from "react"
 import { navigate } from "@reach/router"
 import Img from "gatsby-image"
 import { motion } from "framer-motion"

@@ -7,7 +7,7 @@ const Info = styled.div`
   margin: 30px 0 20px 0;
   padding: 10px 30px;
   h2 {
-    font-size: 20px;
+    font-size: 16px;
   }
   p {
     font-size: 14px;
