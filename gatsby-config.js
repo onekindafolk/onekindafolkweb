@@ -30,7 +30,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/OKF_logo_560.png`, // This path is relative to the root of the site.
+        icon: `src/images/OKF_logo_leaf_560.jpg`, // This path is relative to the root of the site.
       },
     },
     {

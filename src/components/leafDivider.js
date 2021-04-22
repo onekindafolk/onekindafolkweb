@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { mq } from "../styleconfig"
-import candle from "../images/one-kinda-folk-logo-candle.png"
+import leaf from "../images/OKF_leaf_420.jpg"
 
-const CandleLogo = styled.div`
+const LeafLogo = styled.div`
   text-align: center;
 
   img {
@@ -15,12 +15,12 @@ const CandleLogo = styled.div`
   }
 `
 
-const CandleDivider = () => {
+const LeafDivider = () => {
   return (
-    <CandleLogo>
-      <img src={candle} alt="One Kinda Folk Coffee Dublin" />
-    </CandleLogo>
+    <LeafLogo>
+      <img src={leaf} alt="One Kinda Folk Coffee Dublin" />
+    </LeafLogo>
   )
 }
 
-export default CandleDivider
+export default LeafDivider

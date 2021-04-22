@@ -4,7 +4,7 @@ import Cart from "./cart.js"
 import styled from "styled-components"
 import { mq } from "../styleconfig"
 
-import logo from "../images/OKF_logo_560.png"
+import logo from "../images/OKF_logo_leaf_560.jpg"
 
 const HeaderContainer = styled.header`
   text-align: center;

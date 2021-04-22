@@ -6,7 +6,7 @@ import ProductList from "../components/productList"
 import Address from "../components/address"
 import Hours from "../components/hours"
 import Contact from "../components/contact"
-import CandleDivider from "../components/candleDivider"
+import LeafDivider from "../components/leafDivider"
 import SEO from "../components/seo"
 
 const IndexPage = props => {
@@ -18,9 +18,9 @@ const IndexPage = props => {
       <Intro />
       <ProductList />
       <Address />
-      <CandleDivider />
+      <LeafDivider />
       <Hours />
-      <CandleDivider />
+      <LeafDivider />
       <Contact />
     </>
   )
