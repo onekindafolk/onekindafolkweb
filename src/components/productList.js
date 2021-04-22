@@ -63,11 +63,12 @@ const ImageWrapper = styled.div`
   background: #f5f5f5;
   margin-bottom: 10px;
   overflow: hidden;
-  // prettier-ignore
-  height: calc(((100vw - (2 * ${gridPadding}px) - (1 * ${gridGutter}px)) / 2) * 1.3333333333);
-  @media (${mq.desktop}) {
-    height: calc(((100vw - (2 * ${gridPadding}px) - (3 * ${gridGutter}px)) / 4) * 1.3333333333);
-    max-height: calc(((${gridWidth}px - (2 * ${gridPadding}px) - (3 * ${gridGutter}px)) / 4) * 1.3333333333);
+  position: relative;
+  height: 0;
+  padding-bottom: 100%;
+  img {
+    position: absolute;
+    top: 0;
   }
 `
 
